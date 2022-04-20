@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EPlastBoard.DAL.Repositories.Interfaces
 {
-    public interface IBoardReapository : IRepositoryBase<Board>
+    public interface IBoardRepository : IRepositoryBase<Board>
     {
     }
 }
