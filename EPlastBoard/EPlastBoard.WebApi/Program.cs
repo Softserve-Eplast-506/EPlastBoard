@@ -1,3 +1,6 @@
+using EPlastBoard.BLL.Interfaces.Boards;
+using EPlastBoard.BLL.Services.Boards;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EPlastBoard.DAL.EPlastBoardDBContext>();
+
+builder.Services.AddScoped<IBoardService, BoardService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
