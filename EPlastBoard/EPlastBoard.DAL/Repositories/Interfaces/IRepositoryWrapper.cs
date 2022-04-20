@@ -9,5 +9,6 @@ namespace EPlastBoard.DAL.Repositories.Interfaces
     public interface IRepositoryWrapper
     {
         IColumnRepository Column { get; }
+        IBoardReapository Boards { get; }
     }
 }

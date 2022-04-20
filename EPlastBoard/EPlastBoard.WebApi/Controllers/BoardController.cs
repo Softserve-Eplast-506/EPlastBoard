@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EPlastBoard.BLL.Interfaces.Boards;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EPlastBoard.WebApi.Controllers
 {
@@ -6,6 +7,13 @@ namespace EPlastBoard.WebApi.Controllers
     [ApiController]
     public class BoardController : ControllerBase
     {
+        private readonly IBoardService _boardService;
+
+        public BoardController(IBoardService boardService)
+        {
+            _boardService = boardService;
+        }
+        // GetAllBoard, GetBoardById , ChangeBoardName
         // GET: api/<BoardController>
         [HttpGet]
         public IEnumerable<string> Get()
