@@ -14,7 +14,7 @@ namespace EPlastBoard.WebApi.Controllers
         {
             _boardService = boardService;
         }
-        // GetAllBoard, GetBoardById , ChangeBoardName
+
         // GET: api/<BoardsController>/
         [HttpGet]
         public async Task<IActionResult> GetAllBoards()
@@ -76,6 +76,5 @@ namespace EPlastBoard.WebApi.Controllers
             await _boardService.DeleteBoardByIdAsync(id);
             return Ok();
         }
-        
     }
 }

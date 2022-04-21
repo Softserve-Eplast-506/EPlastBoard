@@ -32,8 +32,6 @@ namespace EPlastBoard.BLL.Services.Boards
             return board.Id;
         }
 
-
-
         public async Task<Board> AddNewBoardAsync(Board newBoard)
         {
             var allBoards = await _repoWrapper.Boards.GetAllAsync();
@@ -54,7 +52,6 @@ namespace EPlastBoard.BLL.Services.Boards
             _repoWrapper.Boards.Delete(board);
             await _repoWrapper.SaveAsync();
             return id;
-
         }
     }
 }
