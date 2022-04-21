@@ -4,13 +4,18 @@ using EPlastBoard.DAL.Repositories.Realization;
 
 namespace EPlastBoard.DAL.Entities
 {
-    internal class RepositoryWrapper : IRepositoryWrapper
+    public class RepositoryWrapper : IRepositoryWrapper
     {
+
         private readonly EPlastBoardDBContext? _dbContext;
 
         private IColumnRepository? _column;
         private IBoardRepository? _board;
 
+        public RepositoryWrapper(EPlastBoardDBContext dBContext)
+        {
+            _dbContext = dBContext;
+        }
         public IColumnRepository Column
         {
             get
