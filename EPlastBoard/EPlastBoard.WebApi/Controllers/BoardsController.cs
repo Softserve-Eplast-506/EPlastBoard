@@ -39,10 +39,10 @@ namespace EPlastBoard.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBoard([FromBody] Board newBoard)
         {
-            //if (newBoard == null)
-            //{
-            //    return BadRequest();
-            //}
+            if (newBoard == null)
+            {
+                return BadRequest();
+            }
 
             try
             {
@@ -72,9 +72,7 @@ namespace EPlastBoard.WebApi.Controllers
         // DELETE api/<BoardsController>/DeleteBoard/5
         [HttpDelete("DeleteBoard/{id}")]
         public async Task<IActionResult> DeleteBoardById(int id)
-        // DELETE api/<BoardController>/5
         {
-
             await _boardService.DeleteBoardByIdAsync(id);
             return Ok();
         }

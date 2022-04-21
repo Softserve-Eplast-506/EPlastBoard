@@ -8,7 +8,6 @@ namespace EPlastBoard.DAL.Entities
     {
 
         private readonly EPlastBoardDBContext? _dbContext;
-        private  EPlastBoardDBContext? _dbContext;
 
         private IColumnRepository? _column;
         private IBoardRepository? _board;
@@ -40,10 +39,7 @@ namespace EPlastBoard.DAL.Entities
                 return _board;
             }
         }
-        public void Save()
-        {
-            _dbContext.SaveChanges();
-        }
+
         public async Task SaveAsync()
         {
             await _dbContext.SaveChangesAsync();

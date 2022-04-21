@@ -34,20 +34,26 @@ namespace EPlastBoard.BLL.Services.Boards
 
 
 
-        public async Task AddNewBoardAsync(Board newBoard)
+        public async Task<Board> AddNewBoardAsync(Board newBoard)
         {
-            // перевірка чи існує з однаковою назвою 
+            var allBoards = await _repoWrapper.Boards.GetAllAsync();
+
+            if (!allBoards.Contains(newBoard))
+            {
+                throw new ArgumentException("Board with same name is exist!");
+            }
+
             await _repoWrapper.Boards.CreateAsync(newBoard);
-            // add saving changes in repowrapper
             await _repoWrapper.SaveAsync();
+            return newBoard;
         }
 
-        public async Task DeleteBoardByIdAsync(int id)
+        public async Task<int> DeleteBoardByIdAsync(int id)
         {
             var board = await _repoWrapper.Boards.GetFirstOrDefaultAsync(board => board.Id == id);
-             _repoWrapper.Boards.Delete(board);
-            // add saving changes in repowrapper
+            _repoWrapper.Boards.Delete(board);
             await _repoWrapper.SaveAsync();
+            return id;
 
         }
     }

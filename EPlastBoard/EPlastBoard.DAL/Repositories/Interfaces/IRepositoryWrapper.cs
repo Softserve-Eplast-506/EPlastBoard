@@ -10,7 +10,6 @@ namespace EPlastBoard.DAL.Repositories.Interfaces
     {
         IColumnRepository Column { get; }
         IBoardRepository Boards { get; }
-        void Save();
         Task SaveAsync();
     }
 }

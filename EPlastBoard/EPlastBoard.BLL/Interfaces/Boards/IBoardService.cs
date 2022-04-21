@@ -13,7 +13,7 @@ namespace EPlastBoard.BLL.Interfaces.Boards
         Task<IEnumerable<Board>> GetBoardsListAsync();
         Task<Board> GetBoardByIdAsync(int id);
         Task<int> EditBoardNameAsync(Board board);
-        public  Task DeleteBoardByIdAsync(int id);
-        public  Task AddNewBoardAsync(Board newBoard);
+        Task<int> DeleteBoardByIdAsync(int id);
+        Task<Board> AddNewBoardAsync(Board newBoard);
     }
 }
