@@ -1,10 +1,11 @@
 ﻿using EPlastBoard.BLL.Interfaces.Columns;
 using EPlastBoard.DAL.Entities;
 using EPlastBoard.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace EPlastBoard.BLL.Services.Columns
 {
-    public class ColumnService: IColumnService
+    public class ColumnService : IColumnService
     {
         private readonly IRepositoryWrapper _repoWrapper;
 
@@ -12,6 +13,7 @@ namespace EPlastBoard.BLL.Services.Columns
         {
             _repoWrapper = repoWrapper;
         }
+<<<<<<< HEAD
 
         public async Task<Column> GetColumnByIdAsync(int id)
         {
@@ -36,5 +38,11 @@ namespace EPlastBoard.BLL.Services.Columns
         {
 
         }*/
+=======
+        public async Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId)
+        {
+            return await _repoWrapper.Column.GetAllAsync(c => c.Board.Id == boardId);
+        }
+>>>>>>> main
     }
 }

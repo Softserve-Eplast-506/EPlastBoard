@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EPlastBoard.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace EPlastBoard.DAL.Repositories.Interfaces
 {
-    public interface IRepositoryWrapper
+    public interface IBoardRepository : IRepositoryBase<Board>
     {
-        IBoardRepository Boards { get; }
-        IColumnRepository Columns { get; }
-
-        Task SaveAsync();
     }
 }
