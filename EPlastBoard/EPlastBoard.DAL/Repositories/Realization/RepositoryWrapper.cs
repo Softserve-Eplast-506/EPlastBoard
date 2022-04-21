@@ -8,8 +8,7 @@ namespace EPlastBoard.DAL.Entities
     {
 
         private readonly EPlastBoardDBContext? _dbContext;
-        private  EPlastBoardDBContext? _dbContext;
-
+       
         private IColumnRepository? _column;
         private IBoardRepository? _board;
 
