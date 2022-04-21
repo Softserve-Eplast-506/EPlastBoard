@@ -15,6 +15,13 @@ namespace EPlastBoard.WebApi.Controllers
             _columnService = columnService;
         }
 
+        [HttpGet("Columns/{boardId}")]
+        public async Task<IActionResult> GetAllColumnsByBoard(int boardId)
+        {
+            var columns = await _columnService.GetAllColumnsByBoardAsync(boardId);
+            return Ok(columns);
+        }
+
         // GET api/<ColumnsController>/GetColumn/5
         [HttpGet("GetColumn/{id:int}")]
         public async Task<IActionResult> GetColumnById(int id)

@@ -13,7 +13,6 @@ namespace EPlastBoard.BLL.Services.Columns
         {
             _repoWrapper = repoWrapper;
         }
-<<<<<<< HEAD
 
         public async Task<Column> GetColumnByIdAsync(int id)
         {
@@ -38,11 +37,10 @@ namespace EPlastBoard.BLL.Services.Columns
         {
 
         }*/
-=======
+
         public async Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId)
         {
-            return await _repoWrapper.Column.GetAllAsync(c => c.Board.Id == boardId);
+            return await _repoWrapper.Columns.GetAllAsync(c => c.Board.Id == boardId);
         }
->>>>>>> main
     }
 }
