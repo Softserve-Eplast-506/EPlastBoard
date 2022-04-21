@@ -9,6 +9,6 @@ namespace EPlastBoard.BLL.Interfaces.Columns
 {
     public interface IColumnService
     {
-        //Task<IEnumerable<Column>> GetAllColumnsAsync();
+        Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId);
     }
 }
