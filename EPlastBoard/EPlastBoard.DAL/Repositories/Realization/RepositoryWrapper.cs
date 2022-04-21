@@ -2,7 +2,7 @@
 
 namespace EPlastBoard.DAL.Repositories.Realization
 {
-    public class RepositoryWrapper : IRepositoryWrapper
+    public class RepositoryWrapper: IRepositoryWrapper
     {
         private readonly EPlastBoardDBContext _dbContext;
        
@@ -13,7 +13,8 @@ namespace EPlastBoard.DAL.Repositories.Realization
         {
             _dbContext = dBContext;
         }
-        public IColumnRepository Column
+
+        public IColumnRepository Columns
         {
             get
             {

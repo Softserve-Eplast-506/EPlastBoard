@@ -1,7 +1,10 @@
 using EPlastBoard.BLL.Interfaces.Boards;
 using EPlastBoard.BLL.Services.Boards;
-using EPlastBoard.DAL.Entities;
 using EPlastBoard.DAL.Repositories.Interfaces;
+using EPlastBoard.BLL.Interfaces.Columns;
+using EPlastBoard.BLL.Services.Columns;
+using EPlastBoard.DAL.Repositories.Realization;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

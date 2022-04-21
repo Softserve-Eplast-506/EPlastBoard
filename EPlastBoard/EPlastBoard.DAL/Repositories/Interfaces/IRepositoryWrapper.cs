@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +8,9 @@ namespace EPlastBoard.DAL.Repositories.Interfaces
 {
     public interface IRepositoryWrapper
     {
-        IColumnRepository Column { get; }
-
-        ICardRepository   Card { get; }
-
         IBoardRepository Boards { get; }
+        IColumnRepository Columns { get; }
+        ICardRepository   Card { get; }
 
         Task SaveAsync();
     }

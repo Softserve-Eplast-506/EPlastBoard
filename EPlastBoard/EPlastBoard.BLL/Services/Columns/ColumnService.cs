@@ -13,9 +13,34 @@ namespace EPlastBoard.BLL.Services.Columns
         {
             _repoWrapper = repoWrapper;
         }
+
+        public async Task<Column> GetColumnByIdAsync(int id)
+        {
+            return await _repoWrapper.Columns.GetFirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<int> EditColumnNameAsync(Column column)
+        {
+            _repoWrapper.Columns.Attach(column);
+            _repoWrapper.Columns.Update(column);
+            await _repoWrapper.SaveAsync();
+
+            return column.Id;
+        }
+
+        /*public async Task<int> CreateColumnAsync(Column column)
+        {
+
+        }
+
+        public async Task<Column> DeleteColumnAsync(int id)
+        {
+
+        }*/
+
         public async Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId)
         {
-            return await _repoWrapper.Column.GetAllAsync(c => c.Board.Id == boardId);
+            return await _repoWrapper.Columns.GetAllAsync(c => c.Board.Id == boardId);
         }
     }
 }
