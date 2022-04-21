@@ -37,8 +37,22 @@ namespace EPlastBoard.WebApi.Controllers
 
         // POST api/<BoardController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddBoard([FromBody] Board newBoard)
         {
+            //if (newBoard == null)
+            //{
+            //    return BadRequest();
+            //}
+
+            try
+            {
+                await _boardService.AddNewBoardAsync(newBoard);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return Ok(newBoard); 
         }
 
         // PUT api/<BoardController>/EditBoardName/5
@@ -55,10 +69,12 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok();
         }
 
-        // DELETE api/<BoardController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/<BoardController>/DeleteBoard/5
+        [HttpDelete("DeleteBoard/{id}")]
+        public async Task<IActionResult> DeleteBoardById(int id)
         {
+            await _boardService.DeleteBoardByIdAsync(id);
+            return Ok();
         }
     }
 }

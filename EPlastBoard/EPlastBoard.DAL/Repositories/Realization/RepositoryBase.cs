@@ -164,6 +164,10 @@ namespace EPlastBoard.DAL.Repositories.Realization
 
             return new Tuple<IEnumerable<T>, int>(query, TotalRecords);
         }
+        public async Task SaveAsync()
+        {
+           await EPlastDBContext.SaveChangesAsync();
+        }
     }
 }
 

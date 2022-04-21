@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EPlastBoard.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace EPlastBoard.BLL.Interfaces.Boards
 {
     public interface IBoardService
     {
-
+        public  Task DeleteBoardByIdAsync(int id);
+        public  Task AddNewBoardAsync(Board newBoard);
     }
 }

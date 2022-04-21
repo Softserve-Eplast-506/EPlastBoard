@@ -4,9 +4,9 @@ using EPlastBoard.DAL.Repositories.Realization;
 
 namespace EPlastBoard.DAL.Entities
 {
-    internal class RepositoryWrapper : IRepositoryWrapper
+    public class RepositoryWrapper : IRepositoryWrapper
     {
-        private readonly EPlastBoardDBContext? _dbContext;
+        private  EPlastBoardDBContext? _dbContext;
 
         private IColumnRepository? _column;
         private IBoardRepository? _board;
@@ -33,6 +33,14 @@ namespace EPlastBoard.DAL.Entities
                 }
                 return _board;
             }
+        }
+        public void Save()
+        {
+            _dbContext.SaveChanges();
+        }
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
