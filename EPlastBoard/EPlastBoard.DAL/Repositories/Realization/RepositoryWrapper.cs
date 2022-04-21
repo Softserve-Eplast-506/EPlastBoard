@@ -1,15 +1,17 @@
-﻿using EPlastBoard.DAL.Repositories;
-using EPlastBoard.DAL.Repositories.Interfaces;
-using EPlastBoard.DAL.Repositories.Realization;
+﻿using EPlastBoard.DAL.Repositories.Interfaces;
 
-namespace EPlastBoard.DAL.Entities
+namespace EPlastBoard.DAL.Repositories.Realization
 {
-    internal class RepositoryWrapper: IRepositoryWrapper
+    public class RepositoryWrapper: IRepositoryWrapper
     {
-        private readonly EPlastBoardDBContext? _dbContext;
+        private readonly EPlastBoardDBContext _dbContext;
 
-        private IColumnRepository? _column;
+        private IColumnRepository _column;
 
+        public RepositoryWrapper(EPlastBoardDBContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IColumnRepository Column
         {
             get

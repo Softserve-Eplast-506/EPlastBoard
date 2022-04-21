@@ -14,11 +14,11 @@ namespace EPlastBoard.WebApi.Controllers
             _columnService = columnService;
         }
 
-        //[HttpGet("Columns")]
-        /*public async Task<IActionResult> GetAllColumns()
+        [HttpGet("Columns/{boardId}")]
+        public async Task<IActionResult> GetAllColumnsByBoard(int boardId)
         {
-            //var columns = await _columnService.GetAllColumnsAsync();            
-            //return Ok(columns);
-        }*/
+            var columns = await _columnService.GetAllColumnsByBoardAsync(boardId);            
+            return Ok(columns);
+        }
     }
 }
