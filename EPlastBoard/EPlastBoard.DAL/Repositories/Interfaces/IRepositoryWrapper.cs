@@ -8,6 +8,8 @@ namespace EPlastBoard.DAL.Repositories.Interfaces
 {
     public interface IRepositoryWrapper
     {
-        IColumnRepository Column { get; }
+        IColumnRepository Columns { get; }
+
+        Task SaveAsync();
     }
 }
