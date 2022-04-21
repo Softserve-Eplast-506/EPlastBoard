@@ -35,8 +35,8 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(board);
         }
 
-        // POST api/<BoardsController>
-        [HttpPost]
+        // POST api/<BoardsController>/AddBoard
+        [HttpPost("AddBoard")]
         public async Task<IActionResult> AddBoard([FromBody] Board newBoard)
         {
             if (newBoard == null)
