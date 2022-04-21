@@ -69,15 +69,15 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok();
         }
 
-        // DELETE api/<BoardController>/DeleteBoard/5
+        // DELETE api/<BoardsController>/DeleteBoard/5
         [HttpDelete("DeleteBoard/{id}")]
         public async Task<IActionResult> DeleteBoardById(int id)
-        // DELETE api/<BoardsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/<BoardController>/5
         {
+
             await _boardService.DeleteBoardByIdAsync(id);
             return Ok();
         }
+        
     }
 }

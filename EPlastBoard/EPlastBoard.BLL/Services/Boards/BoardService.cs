@@ -36,6 +36,7 @@ namespace EPlastBoard.BLL.Services.Boards
 
         public async Task AddNewBoardAsync(Board newBoard)
         {
+            // перевірка чи існує з однаковою назвою 
             await _repoWrapper.Boards.CreateAsync(newBoard);
             // add saving changes in repowrapper
             await _repoWrapper.SaveAsync();
