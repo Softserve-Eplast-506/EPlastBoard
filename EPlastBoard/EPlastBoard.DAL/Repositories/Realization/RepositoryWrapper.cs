@@ -34,5 +34,10 @@ namespace EPlastBoard.DAL.Entities
                 return _board;
             }
         }
+
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

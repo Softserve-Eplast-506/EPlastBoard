@@ -15,7 +15,7 @@ namespace EPlastBoard.WebApi.Controllers
             _boardService = boardService;
         }
         // GetAllBoard, GetBoardById , ChangeBoardName
-        // GET: api/<BoardController>/
+        // GET: api/<BoardsController>/
         [HttpGet]
         public async Task<IActionResult> GetAllBoards()
         {
@@ -35,27 +35,27 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(board);
         }
 
-        // POST api/<BoardController>
+        // POST api/<BoardsController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<BoardController>/EditBoardName/5
+        // PUT api/<BoardsController>/EditBoardName/5
         [HttpPut("EditBoardName/{id}")]
-        public async Task<IActionResult> EditBoardName(int id, [FromBody] string name)
+        public async Task<IActionResult> EditBoardName(Board board)
         {
-            if (!String.IsNullOrEmpty(name))
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
-            await _boardService.EditBoardNameAsync(id, name);
+            await _boardService.EditBoardNameAsync(board);
 
             return Ok();
         }
 
-        // DELETE api/<BoardController>/5
+        // DELETE api/<BoardsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
