@@ -22,5 +22,22 @@ namespace EPlastBoard.DAL.Entities
             }
         }
 
+        private ICardRepository? _card;
+
+        public ICardRepository Card
+        {
+            get
+            {
+                if (_card == null)
+                {
+                    _card = new CardRepository(_dbContext);
+                }
+                return _card;
+            }
+        }
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
