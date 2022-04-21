@@ -18,10 +18,11 @@ namespace EPlastBoard.BLL.Services.Cards
             _repoWrapper = repoWrapper;
         }
 
-        public void CreateCard(Card card)
+        public async Task<Card> CreateCard(Card card)
         {
-            _repoWrapper.Card.CreateAsync(card);
-            _repoWrapper.SaveAsync();
+            await  _repoWrapper.Card.CreateAsync(card);
+            await  _repoWrapper.SaveAsync();
+            return card;
 
         }
 
@@ -32,10 +33,12 @@ namespace EPlastBoard.BLL.Services.Cards
             _repoWrapper.SaveAsync();
         }
 
-        public void EditCardAsync(Card card)
+        public async Task<int> EditCardAsync(Card card)
         {
             _repoWrapper.Card.Update(card);
-            _repoWrapper.SaveAsync();
+            await _repoWrapper.SaveAsync();
+
+            return card.Id;
         }
 
         public Task<IEnumerable<Card>> GetAllCardsAsync()
