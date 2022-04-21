@@ -13,6 +13,27 @@ namespace EPlastBoard.BLL.Services.Boards
             _repoWrapper = repoWrapper;
         }
 
+        public async Task<IEnumerable<Board>> GetBoardsListAsync()
+        {
+            return await _repoWrapper.Boards.GetAllAsync();
+        }
+
+        public async Task<Board> GetBoardByIdAsync(int id)
+        {
+            return await _repoWrapper.Boards.GetFirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<int> EditBoardNameAsync(Board board)
+        {
+            _repoWrapper.Boards.Attach(board);
+            _repoWrapper.Boards.Update(board);
+            await _repoWrapper.SaveAsync();
+
+            return board.Id;
+        }
+
+
+
         public async Task AddNewBoardAsync(Board newBoard)
         {
             await _repoWrapper.Boards.CreateAsync(newBoard);

@@ -42,5 +42,10 @@ namespace EPlastBoard.DAL.Entities
         {
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
