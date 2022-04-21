@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using EPlastBoard.BLL.Interfaces.Cards;
+using EPlastBoard.DAL.Entities;
 
 namespace EPlastBoard.WebApi.Controllers
 {
@@ -8,36 +8,68 @@ namespace EPlastBoard.WebApi.Controllers
     [ApiController]
     public class CardController : ControllerBase
     {
+        private readonly ICardService _cardService;
+
+        public CardController(ICardService cardService)
+        {
+            _cardService = cardService;
+        }
+
         // GET: api/<CardController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Card>>> GetAllCards()
         {
-            return new string[] { "value1", "value2" };
+            var cards = await _cardService.GetAllCardsAsync();
+            return Ok(cards);
         }
 
         // GET api/<CardController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetCard/{id}")]
+        public async Task<ActionResult<Card>> GetCardById(int id)
         {
-            return "value";
+            var cards = await _cardService.GetCardByIdAsync(id);
+            return Ok(cards);
         }
 
         // POST api/<CardController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("AddCard")]
+        public async Task<ActionResult<Card>> AddCard(Card newCard)
         {
+
+            if (newCard == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+               await _cardService.CreateCard(newCard);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return Ok(newCard);
         }
 
         // PUT api/<CardController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("EditCardName")]
+        public async Task<IActionResult> EditCardName(Card card)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(await _cardService.EditCardAsync(card));
         }
 
+
         // DELETE api/<CardController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteCard/{id}")]
+        public async Task<IActionResult> DeleteCardById(int id)
         {
+            _cardService.DeleteCardAsync(id);
+            return Ok(id);
         }
     }
 }
