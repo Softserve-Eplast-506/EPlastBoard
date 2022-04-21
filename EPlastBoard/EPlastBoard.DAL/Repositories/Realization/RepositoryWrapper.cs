@@ -6,11 +6,17 @@ namespace EPlastBoard.DAL.Entities
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
+
+        private readonly EPlastBoardDBContext? _dbContext;
         private  EPlastBoardDBContext? _dbContext;
 
         private IColumnRepository? _column;
         private IBoardRepository? _board;
 
+        public RepositoryWrapper(EPlastBoardDBContext dBContext)
+        {
+            _dbContext = dBContext;
+        }
         public IColumnRepository Column
         {
             get

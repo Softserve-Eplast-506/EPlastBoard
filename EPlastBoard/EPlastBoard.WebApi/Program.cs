@@ -1,5 +1,7 @@
 using EPlastBoard.BLL.Interfaces.Boards;
 using EPlastBoard.BLL.Services.Boards;
+using EPlastBoard.DAL.Entities;
+using EPlastBoard.DAL.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EPlastBoard.DAL.EPlastBoardDBContext>();
+builder.Services.AddMemoryCache();
 
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IBoardService, BoardService>();
 
 var app = builder.Build();
