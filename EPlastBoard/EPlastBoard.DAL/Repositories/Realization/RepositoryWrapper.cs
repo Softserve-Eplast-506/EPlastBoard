@@ -2,15 +2,16 @@
 
 namespace EPlastBoard.DAL.Repositories.Realization
 {
-    public class RepositoryWrapper: IRepositoryWrapper
+    public class RepositoryWrapper : IRepositoryWrapper
     {
         private readonly EPlastBoardDBContext _dbContext;
-
+       
         private IColumnRepository _column;
+        private IBoardRepository _board;
 
-        public RepositoryWrapper(EPlastBoardDBContext dbContext)
+        public RepositoryWrapper(EPlastBoardDBContext dBContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dBContext;
         }
         public IColumnRepository Column
         {
@@ -24,5 +25,21 @@ namespace EPlastBoard.DAL.Repositories.Realization
             }
         }
 
+        public IBoardRepository Boards
+        {
+            get
+            {
+                if (_board == null)
+                {
+                    _board = new BoardRepository(_dbContext);
+                }
+                return _board;
+            }
+        }
+
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
