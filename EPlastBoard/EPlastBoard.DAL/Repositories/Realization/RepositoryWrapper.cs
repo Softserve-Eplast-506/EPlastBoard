@@ -26,6 +26,20 @@ namespace EPlastBoard.DAL.Repositories.Realization
             }
         }
 
+        private ICardRepository? _card;
+
+        public ICardRepository Card
+        {
+            get
+            {
+                if (_card == null)
+                {
+                    _card = new CardRepository(_dbContext);
+                }
+                return _card;
+            }
+        }
+
         public IBoardRepository Boards
         {
             get
