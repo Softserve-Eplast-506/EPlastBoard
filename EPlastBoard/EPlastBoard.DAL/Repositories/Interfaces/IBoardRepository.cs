@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EPlastBoard.BLL.Interfaces.Columns
+namespace EPlastBoard.DAL.Repositories.Interfaces
 {
-    public interface IColumnService
+    public interface IBoardRepository : IRepositoryBase<Board>
     {
-        Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId);
     }
 }

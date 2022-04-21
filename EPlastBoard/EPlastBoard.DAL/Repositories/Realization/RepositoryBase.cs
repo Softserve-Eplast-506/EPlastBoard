@@ -164,6 +164,7 @@ namespace EPlastBoard.DAL.Repositories.Realization
 
             return new Tuple<IEnumerable<T>, int>(query, TotalRecords);
         }
+        
     }
 }
 

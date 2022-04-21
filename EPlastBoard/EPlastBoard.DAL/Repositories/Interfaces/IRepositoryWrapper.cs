@@ -9,7 +9,11 @@ namespace EPlastBoard.DAL.Repositories.Interfaces
     public interface IRepositoryWrapper
     {
         IColumnRepository Column { get; }
+
         ICardRepository   Card { get; }
+
+        IBoardRepository Boards { get; }
+
         Task SaveAsync();
     }
 }
