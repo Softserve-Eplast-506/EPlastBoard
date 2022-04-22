@@ -20,11 +20,13 @@ builder.Services.AddDbContext<EPlastBoard.DAL.EPlastBoardDBContext>();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-builder.Services.AddScoped<IBoardService, BoardService>();
 builder.Services.AddScoped<IColumnService, ColumnService>();
+builder.Services.AddScoped<IBoardService, BoardService>();
+builder.Services.AddCors();
+
 
 var app = builder.Build();
-
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
