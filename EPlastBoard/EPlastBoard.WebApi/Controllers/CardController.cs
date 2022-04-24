@@ -23,6 +23,13 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(cards);
         }
 
+        [HttpGet("Card/{columnId}")]
+        public async Task<IActionResult> GetAllCardByColumn(int columnId)
+        {
+            var cards = await _cardService.GetAllCardByColumnAsync(columnId);
+            return Ok(cards);
+        }
+
         // GET api/<CardController>/5
         [HttpGet("GetCard/{id}")]
         public async Task<ActionResult<Card>> GetCardById(int id)

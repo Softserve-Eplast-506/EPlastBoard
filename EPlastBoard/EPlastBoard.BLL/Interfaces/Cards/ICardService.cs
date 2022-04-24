@@ -15,6 +15,7 @@ namespace EPlastBoard.BLL.Interfaces.Cards
         Task<int> EditCardAsync(Card card);
         void DeleteCardAsync(int id);
         Task<Card> CreateCard(Card card);
+        Task<IEnumerable<Card>> GetAllCardByColumnAsync(int columnId);
 
     }
 }

@@ -5,6 +5,8 @@ using EPlastBoard.BLL.Interfaces.Columns;
 using EPlastBoard.BLL.Services.Columns;
 using EPlastBoard.DAL.Repositories.Realization;
 using System.Text.Json.Serialization;
+using EPlastBoard.BLL.Interfaces.Cards;
+using EPlastBoard.BLL.Services.Cards;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +24,10 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IColumnService, ColumnService>();
 builder.Services.AddScoped<IBoardService, BoardService>();
-builder.Services.AddCors();
+builder.Services.AddScoped<IColumnService, ColumnService>();
+builder.Services.AddScoped<ICardService, CardService>();
 
+builder.Services.AddCors();
 
 var app = builder.Build();
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
@@ -33,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseHttpsRedirection();
 
