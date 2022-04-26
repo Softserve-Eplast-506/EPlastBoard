@@ -28,15 +28,25 @@ namespace EPlastBoard.BLL.Services.Columns
             return column.Id;
         }
 
-        /*public async Task<int> CreateColumnAsync(Column column)
+        public async Task<Column> CreateColumnAsync(Column column)
         {
-
+            var allColumns = await _repoWrapper.Columns.GetAllAsync();
+            if (!allColumns.Contains(column))
+            {
+                throw new ArgumentException("The same board as exist");
+            }
+            await  _repoWrapper.Columns.CreateAsync(column);
+            await  _repoWrapper.SaveAsync();
+            return column;
         }
 
-        public async Task<Column> DeleteColumnAsync(int id)
+        public async Task<int> DeleteColumnAsync(int id)
         {
-
-        }*/
+            var column = await _repoWrapper.Columns.GetFirstOrDefaultAsync(x => x.Id == id);
+            _repoWrapper.Columns.Delete(column);
+            await _repoWrapper.SaveAsync();
+            return id;
+        }
 
         public async Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId)
         {
