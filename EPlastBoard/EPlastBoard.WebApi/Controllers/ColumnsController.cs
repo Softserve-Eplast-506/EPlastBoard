@@ -49,30 +49,31 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok();
         }
 
-        /*// POST api/<ColumnController>/AddColumn
-        [HttpPost("AddColumn")]
-        public async Task<IActionResult> AddColumn(Column column)
+        // POST api/<ColumnsController>/AddColumn
+        [HttpPost("AddColumn/{id}")]
+        public async Task<IActionResult> AddColumn(Column newColumn)
         {
-            if (ModelState.IsValid)
+            if (newColumn == null)
             {
-                try
-                {
-                    column.Id = await _columnService.CreateColumnAsync(column);
-                    return Ok(column.Id);
-                }
-                catch (InvalidOperationException)
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest);
-                }
+                return BadRequest();
             }
-            return BadRequest(ModelState);
+
+            try
+            {
+                await _columnService.CreateColumnAsync(newColumn);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return Ok(newColumn);
         }
 
         // DELETE api/<ColumnController>/DeleteColumn/5
         [HttpDelete("DeleteColumn/{id}")]
-        public async Task<IActionResult> DeleteColumn(int id)
+        public async Task<IActionResult> DeleteColumnById(int id)
         {
             return Ok(await _columnService.DeleteColumnAsync(id));
-        }*/
+        }
     }
 }

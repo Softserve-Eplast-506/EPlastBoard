@@ -13,7 +13,7 @@ namespace EPlastBoard.DAL.Entities
         public string Title { get; set; }
         public int BoardId { get; set; }
 
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<Card>? Cards { get; set; }
 
         public Board Board { get; set; }
     }
