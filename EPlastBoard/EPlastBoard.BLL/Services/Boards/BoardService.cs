@@ -36,7 +36,7 @@ namespace EPlastBoard.BLL.Services.Boards
         {
             var allBoards = await _repoWrapper.Boards.GetAllAsync();
 
-            if (!allBoards.Contains(newBoard))
+            if (allBoards.Contains(newBoard))
             {
                 throw new ArgumentException("Board with same name is exist!");
             }
