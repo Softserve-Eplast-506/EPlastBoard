@@ -11,6 +11,6 @@ namespace EPlastBoard.DAL.Entities
         [MaxLength(220)]
         [DataType(DataType.Text)]
         public string Title { get; set; }
-        public ICollection<Column> Columns { get; set; }
+        public ICollection<Column>? Columns { get; set; }
     }
 }
