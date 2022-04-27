@@ -15,6 +15,6 @@ namespace EPlastBoard.DAL.Entities
 
         public ICollection<Card>? Cards { get; set; }
 
-        public Board Board { get; set; }
+        public Board? Board { get; set; }
     }
 }

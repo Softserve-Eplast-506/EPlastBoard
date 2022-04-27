@@ -1,4 +1,6 @@
-﻿using EPlastBoard.BLL.Interfaces.Columns;
+﻿using AutoMapper;
+using EPlastBoard.BLL.DTO;
+using EPlastBoard.BLL.Interfaces.Columns;
 using EPlastBoard.DAL.Entities;
 using EPlastBoard.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +10,13 @@ namespace EPlastBoard.BLL.Services.Columns
     public class ColumnService : IColumnService
     {
         private readonly IRepositoryWrapper _repoWrapper;
+        private readonly IMapper _mapper;
 
-        public ColumnService(IRepositoryWrapper repoWrapper)
+
+        public ColumnService(IRepositoryWrapper repoWrapper, IMapper mapper)
         {
             _repoWrapper = repoWrapper;
+            _mapper = mapper;
         }
 
         public async Task<Column> GetColumnByIdAsync(int id)
@@ -19,23 +24,27 @@ namespace EPlastBoard.BLL.Services.Columns
             return await _repoWrapper.Columns.GetFirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<int> EditColumnNameAsync(Column column)
+        public async Task<int> EditColumnNameAsync(ColumnDTO columnDTO)
         {
-            _repoWrapper.Columns.Attach(column);
+            var column = await _repoWrapper.Columns.GetFirstAsync(x => x.Id == columnDTO.Id);
+            column.Title = columnDTO.Title;
             _repoWrapper.Columns.Update(column);
             await _repoWrapper.SaveAsync();
 
             return column.Id;
         }
 
-        public async Task<Column> CreateColumnAsync(Column column)
+        public async Task<Column> CreateColumnAsync(ColumnDTO columnDTO)
         {
             var allColumns = await _repoWrapper.Columns.GetAllAsync();
-            if (!allColumns.Contains(column))
+            
+            var column = _mapper.Map<ColumnDTO, Column>(columnDTO);
+
+            if (allColumns.Contains(column))
             {
                 throw new ArgumentException("The same board as exist");
             }
-            await  _repoWrapper.Columns.CreateAsync(column);
+            await _repoWrapper.Columns.CreateAsync(column);
             await  _repoWrapper.SaveAsync();
             return column;
         }
