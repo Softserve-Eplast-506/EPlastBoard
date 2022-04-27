@@ -11,6 +11,7 @@ namespace EPlastBoard.BLL.Interfaces.Cards
     public interface ICardService
     {
         Task<IEnumerable<Card>> GetAllCardsAsync();
+        Task<IEnumerable<Card>> GetCardByColumnAsync(int id);
         Task<Card> GetCardByIdAsync(int id);
         Task<int> EditCardAsync(Card card);
         void DeleteCardAsync(int id);
