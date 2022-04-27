@@ -21,6 +21,8 @@ builder.Services.AddDbContext<EPlastBoard.DAL.EPlastBoardDBContext>();
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IColumnService, ColumnService>();
 builder.Services.AddScoped<IBoardService, BoardService>();

@@ -1,4 +1,5 @@
-﻿using EPlastBoard.BLL.Interfaces.Columns;
+﻿using EPlastBoard.BLL.DTO;
+using EPlastBoard.BLL.Interfaces.Columns;
 using EPlastBoard.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ namespace EPlastBoard.WebApi.Controllers
 
         // PUT api/<ColumnsController>/EditColumnName/5
         [HttpPut("EditColumnName/{id}")]
-        public async Task<IActionResult> EditColumnName(Column column)
+        public async Task<IActionResult> EditColumnName(ColumnDTO column)
         {
             if (!ModelState.IsValid)
             {
@@ -50,8 +51,8 @@ namespace EPlastBoard.WebApi.Controllers
         }
 
         // POST api/<ColumnsController>/AddColumn
-        [HttpPost("AddColumn/{id}")]
-        public async Task<IActionResult> AddColumn(Column newColumn)
+        [HttpPost("AddColumn")]
+        public async Task<IActionResult> AddColumn([FromBody] ColumnDTO newColumn)
         {
             if (newColumn == null)
             {
