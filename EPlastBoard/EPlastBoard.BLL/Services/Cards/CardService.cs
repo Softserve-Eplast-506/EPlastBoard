@@ -56,5 +56,9 @@ namespace EPlastBoard.BLL.Services.Cards
             return await _repoWrapper.Card.GetAllAsync(c => c.Column.Id == columnId);
         }
 
+        public async Task<IEnumerable<Card>> GetCardByColumnAsync(int id)
+        {
+            return await _repoWrapper.Card.GetAllAsync(x => x.ColumnId == id);
+        }
     }
 }
