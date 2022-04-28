@@ -15,8 +15,7 @@ namespace EPlastBoard.DAL
                 return;
             Board[] boards = new Board[]
             {
-                new Board { Title = "TestBoard" },
-                new Board { Title = "TestBoard 2" }
+                new Board { Title = "Example Board" },
             };
 
             foreach (Board board in boards)
@@ -25,9 +24,10 @@ namespace EPlastBoard.DAL
 
             Column[] columns = new Column[]
             {
-                new Column { Title = "Done", BoardId = 1 },
-                new Column { Title = "To Do", BoardId = 1 },
-                new Column { Title = "To Do", BoardId = 2 }
+                new Column { Title = "To do", BoardId = context.Boards.FirstOrDefault().Id },
+                new Column { Title = "In progress", BoardId = context.Boards.FirstOrDefault().Id },
+                new Column { Title = "Done", BoardId = context.Boards.FirstOrDefault().Id },
+
             };
             foreach (Column column in columns)
                 context.Columns.Add(column);
@@ -35,10 +35,9 @@ namespace EPlastBoard.DAL
 
             Card[] cards = new Card[]
             {
-              new Card { Title = "make some money", Description = "shut up and do smth", ColumnId = 1 },
-                new Card { Title = "make some money", Description = "shut up and do smth", ColumnId = 1 },
-                new Card { Title = "make some money", Description = "shut up and do smth", ColumnId = 2 },
-                new Card { Title = "make some money", Description = "shut up and do smth", ColumnId = 3 }
+              new Card { Title = "Card example title", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id },
+                new Card { Title = "Card example title", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id },
+              
         };
             foreach (Card card in cards)
                 context.Cards.Add(card);
