@@ -36,9 +36,9 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(column);
         }
 
-        // PUT api/<ColumnsController>/EditColumnName/5
-        [HttpPut("EditColumnName/{id}")]
-        public async Task<IActionResult> EditColumnName(ColumnDTO column)
+        // PUT api/<ColumnsController>/EditColumnName
+        [HttpPut("EditColumnName")]
+        public async Task<IActionResult> EditColumnName([FromBody] ColumnDTO column)
         {
             if (!ModelState.IsValid)
             {
