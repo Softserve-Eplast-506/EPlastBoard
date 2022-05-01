@@ -47,7 +47,7 @@ namespace EPlastBoard.WebApi.Controllers
 
         // POST api/<CardController>
         [HttpPost("AddCard")]
-        public async Task<ActionResult<Card>> AddCard(Card newCard)
+        public async Task<ActionResult<Card>> AddCard([FromBody] Card newCard)
         {
 
             if (newCard == null)
