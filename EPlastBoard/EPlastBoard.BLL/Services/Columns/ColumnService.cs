@@ -24,11 +24,11 @@ namespace EPlastBoard.BLL.Services.Columns
             return await _repoWrapper.Columns.GetFirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<int> EditColumnNameAsync(ColumnDTO columnDTO)
+        public async Task<int> EditColumnNameAsync(Column newColumn)
         {
-            var column = await _repoWrapper.Columns.GetFirstAsync(x => x.Id == columnDTO.Id);
-            column.Title = columnDTO.Title;
-            _repoWrapper.Columns.Update(column);
+            var column = await _repoWrapper.Columns.GetFirstAsync(x => x.Id == newColumn.Id);
+            column.Title = newColumn.Title;
+            _repoWrapper.Columns.Update(newColumn);
             await _repoWrapper.SaveAsync();
 
             return column.Id;

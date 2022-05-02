@@ -7,7 +7,7 @@ namespace EPlastBoard.BLL.Interfaces.Columns
     {
         Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId);
         Task<Column> GetColumnByIdAsync(int id);
-        Task<int> EditColumnNameAsync(ColumnDTO column);
+        Task<int> EditColumnNameAsync(Column column);
         Task<Column> CreateColumnAsync(ColumnDTO column);
         Task<int> DeleteColumnAsync(int id);
     }
