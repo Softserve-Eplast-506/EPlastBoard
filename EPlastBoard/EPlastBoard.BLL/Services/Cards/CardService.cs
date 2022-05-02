@@ -37,7 +37,12 @@ namespace EPlastBoard.BLL.Services.Cards
 
         public async Task<int> EditCardAsync(Card card)
         {
-            _repoWrapper.Card.Update(card);
+
+            var oldCard = await _repoWrapper.Card.GetFirstAsync(x => x.Id == card.Id);
+            oldCard.Title = card.Title;
+            oldCard.Description = card.Description;
+
+            _repoWrapper.Card.Update(oldCard);
             await _repoWrapper.SaveAsync();
 
             return card.Id;
