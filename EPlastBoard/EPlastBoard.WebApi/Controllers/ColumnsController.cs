@@ -52,7 +52,7 @@ namespace EPlastBoard.WebApi.Controllers
 
         // POST api/<ColumnsController>/AddColumn
         [HttpPost("AddColumn")]
-        public async Task<IActionResult> AddColumn([FromBody] ColumnDTO newColumn)
+        public async Task<IActionResult> AddColumn([FromBody] Column newColumn)
         {
             if (newColumn == null)
             {

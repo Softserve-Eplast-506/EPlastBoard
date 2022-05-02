@@ -34,11 +34,9 @@ namespace EPlastBoard.BLL.Services.Columns
             return column.Id;
         }
 
-        public async Task<Column> CreateColumnAsync(ColumnDTO columnDTO)
+        public async Task<Column> CreateColumnAsync(Column column)
         {
             var allColumns = await _repoWrapper.Columns.GetAllAsync();
-            
-            var column = _mapper.Map<ColumnDTO, Column>(columnDTO);
 
             if (allColumns.Contains(column))
             {
