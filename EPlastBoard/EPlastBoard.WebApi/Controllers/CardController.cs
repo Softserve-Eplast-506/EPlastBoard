@@ -30,6 +30,13 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(cards);
         }
 
+        [HttpGet("GetCardsByBoard/{boardId:int}")]
+        public async Task<IActionResult> GetCardsByBoard(int boardId)
+        {
+            var cards = await _cardService.GetCardsByBoardAsync(boardId);
+            return Ok(cards);
+        }
+
         // GET api/<CardController>/5
         [HttpGet("GetCard/{id}")]
         public async Task<ActionResult<Card>> GetCardById(int id)
