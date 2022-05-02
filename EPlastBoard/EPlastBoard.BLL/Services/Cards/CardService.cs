@@ -1,6 +1,7 @@
 ﻿using EPlastBoard.BLL.Interfaces.Cards;
 using EPlastBoard.DAL.Entities;
 using EPlastBoard.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,12 @@ namespace EPlastBoard.BLL.Services.Cards
         public async Task<IEnumerable<Card>> GetCardByColumnAsync(int id)
         {
             return await _repoWrapper.Card.GetAllAsync(x => x.ColumnId == id);
+        }
+        public async Task<IEnumerable<Card>> GetCardsByBoardAsync(int id)
+        {
+            return await _repoWrapper.Card.GetAllAsync(predicate: x => x.Column.BoardId == id, 
+                include:
+                 source => source.Include(c => c.Column));
         }
     }
 }

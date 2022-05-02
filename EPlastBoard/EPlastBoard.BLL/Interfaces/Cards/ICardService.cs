@@ -17,6 +17,6 @@ namespace EPlastBoard.BLL.Interfaces.Cards
         void DeleteCardAsync(int id);
         Task<Card> CreateCard(Card card);
         Task<IEnumerable<Card>> GetAllCardByColumnAsync(int columnId);
-
+        Task<IEnumerable<Card>> GetCardsByBoardAsync(int columnId);
     }
 }
