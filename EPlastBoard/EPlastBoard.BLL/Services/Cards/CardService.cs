@@ -27,11 +27,12 @@ namespace EPlastBoard.BLL.Services.Cards
 
         }
 
-        public void DeleteCardAsync(int id)
+        public async Task<int> DeleteCardAsync(int id)
         {
             var card = (_repoWrapper.Card.GetFirstOrDefaultAsync(x => x.Id == id)).Result;
             _repoWrapper.Card.Delete(card);
-            _repoWrapper.SaveAsync();
+            await _repoWrapper.SaveAsync();
+            return id;
         }
 
         public async Task<int> EditCardAsync(Card card)

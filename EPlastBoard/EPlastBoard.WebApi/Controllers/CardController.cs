@@ -89,8 +89,9 @@ namespace EPlastBoard.WebApi.Controllers
         [HttpDelete("DeleteCard/{id}")]
         public async Task<IActionResult> DeleteCardById(int id)
         {
-            _cardService.DeleteCardAsync(id);
-            return Ok(id);
+            await _cardService.DeleteCardAsync(id);
+            return Ok();
         }
+
     }
 }
