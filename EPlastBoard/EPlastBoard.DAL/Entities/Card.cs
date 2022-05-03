@@ -10,6 +10,7 @@ namespace EPlastBoard.DAL.Entities
         [MaxLength(220)]
         [DataType(DataType.Text)]
         public string Title { get; set; }
+        public int Index { get; set; }
 
         [MaxLength(1000)]
         [DataType(DataType.Text)]

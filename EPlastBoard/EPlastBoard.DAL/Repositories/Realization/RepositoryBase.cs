@@ -33,9 +33,9 @@ namespace EPlastBoard.DAL.Repositories.Realization
             this.EPlastDBContext.Set<T>().Attach(entity);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, Func<IQueryable<T>, IQueryable<T>> sorting = null)
         {
-            return await this.GetQuery(predicate, include).ToListAsync();
+            return await this.GetQuery(predicate, include, sorting).ToListAsync();
         }
 
         public async Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
@@ -49,7 +49,7 @@ namespace EPlastBoard.DAL.Repositories.Realization
             return await this.GetQuery(predicate, include).FirstOrDefaultAsync();
         }
 
-        private IQueryable<T> GetQuery(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        private IQueryable<T> GetQuery(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, Func<IQueryable<T>, IQueryable<T>> sorting = null)
         {
             var query = this.EPlastDBContext.Set<T>().AsNoTracking();
             if (include != null)
@@ -59,6 +59,10 @@ namespace EPlastBoard.DAL.Repositories.Realization
             if (predicate != null)
             {
                 query = query.Where(predicate);
+            }
+            if (sorting != null)
+            {
+                query = sorting(query);
             }
             return query;
         }

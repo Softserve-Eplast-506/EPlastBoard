@@ -11,6 +11,7 @@ namespace EPlastBoard.DAL.Entities
         [MaxLength(220)]
         [DataType(DataType.Text)]
         public string Title { get; set; }
+        public int Index { get; set; }
         public int BoardId { get; set; }
 
         public ICollection<Card>? Cards { get; set; }
