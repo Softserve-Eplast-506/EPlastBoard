@@ -84,6 +84,18 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok(await _cardService.EditCardAsync(card));
         }
 
+        // PUT api/<CardController>/5
+        [HttpPut("UpdateCards")]
+        public async Task<IActionResult> UpdateCards(IEnumerable<Card> cards)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _cardService.UpdateCardAsync(cards);
+            return Ok();
+        }
+
 
         // DELETE api/<CardController>/5
         [HttpDelete("DeleteCard/{id}")]

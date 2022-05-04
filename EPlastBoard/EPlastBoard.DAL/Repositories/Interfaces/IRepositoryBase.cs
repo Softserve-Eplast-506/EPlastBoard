@@ -8,12 +8,12 @@ namespace EPlastBoard.DAL.Repositories
         Task CreateAsync(T entity);
 
         void Update(T entity);
-
+        void Update(IEnumerable <T> entity);
         void Delete(T entity);
 
         void Attach(T entity);
 
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, Func<IQueryable<T>, IQueryable<T>> sorting = null);
 
         Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 

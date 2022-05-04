@@ -57,7 +57,20 @@ namespace EPlastBoard.BLL.Services.Columns
 
         public async Task<IEnumerable<Column>> GetAllColumnsByBoardAsync(int boardId)
         {
-            return await _repoWrapper.Columns.GetAllAsync(c => c.Board.Id == boardId);
+            var columns = await _repoWrapper.Columns.GetAllAsync(predicate: c => c.Board.Id == boardId,
+                include: source => source.Include(x => x.Cards));
+            foreach (var column in columns)
+            {
+                column.Cards = column.Cards.OrderBy(x => x.Index).ToList();
+            }
+            columns = columns.OrderBy(x => x.Index).ToList();
+            return columns;
+        }
+
+        public async Task UpdateColumns(IEnumerable<Column> columns)
+        {
+            _repoWrapper.Columns.Update(columns);
+            await _repoWrapper.SaveAsync();
         }
     }
 }
