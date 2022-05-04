@@ -69,9 +69,16 @@ namespace EPlastBoard.BLL.Services.Cards
         }
         public async Task<IEnumerable<Card>> GetCardsByBoardAsync(int id)
         {
-            return await _repoWrapper.Card.GetAllAsync(predicate: x => x.Column.BoardId == id, 
+            var cards = await _repoWrapper.Card.GetAllAsync(predicate: x => x.Column.BoardId == id, 
                 include:
                  source => source.Include(c => c.Column));
+             return cards.OrderBy(x => x.Index).ToList();
+        }
+
+        public async Task UpdateCardAsync(IEnumerable<Card> cards)
+        {
+            _repoWrapper.Card.Update(cards);
+            await _repoWrapper.SaveAsync();
         }
     }
 }

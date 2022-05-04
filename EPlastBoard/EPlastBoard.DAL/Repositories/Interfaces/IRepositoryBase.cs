@@ -8,7 +8,7 @@ namespace EPlastBoard.DAL.Repositories
         Task CreateAsync(T entity);
 
         void Update(T entity);
-
+        void Update(IEnumerable <T> entity);
         void Delete(T entity);
 
         void Attach(T entity);

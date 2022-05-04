@@ -50,6 +50,21 @@ namespace EPlastBoard.WebApi.Controllers
             return Ok();
         }
 
+        // PUT api/<ColumnsController>/UpdateColumns
+        [HttpPut("UpdateColumns")]
+        public async Task<IActionResult> UpdateColumns([FromBody] IEnumerable<Column> column)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _columnService.UpdateColumns(column);
+
+            return Ok();
+        }
+
+
         // POST api/<ColumnsController>/AddColumn
         [HttpPost("AddColumn")]
         public async Task<IActionResult> AddColumn([FromBody] Column newColumn)

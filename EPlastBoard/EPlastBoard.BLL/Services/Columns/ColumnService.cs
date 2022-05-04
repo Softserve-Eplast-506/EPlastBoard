@@ -63,7 +63,14 @@ namespace EPlastBoard.BLL.Services.Columns
             {
                 column.Cards = column.Cards.OrderBy(x => x.Index).ToList();
             }
+            columns = columns.OrderBy(x => x.Index).ToList();
             return columns;
+        }
+
+        public async Task UpdateColumns(IEnumerable<Column> columns)
+        {
+            _repoWrapper.Columns.Update(columns);
+            await _repoWrapper.SaveAsync();
         }
     }
 }

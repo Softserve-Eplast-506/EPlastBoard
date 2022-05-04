@@ -28,6 +28,14 @@ namespace EPlastBoard.DAL.Repositories.Realization
             this.EPlastDBContext.Set<T>().Remove(entity);
         }
 
+        public void Update(IEnumerable<T> entity)
+        {
+            foreach (var item in entity)
+            {
+                this.EPlastDBContext.Set<T>().Update(item);
+            }
+        }
+
         public void Attach(T entity)
         {
             this.EPlastDBContext.Set<T>().Attach(entity);
