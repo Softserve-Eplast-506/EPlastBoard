@@ -35,14 +35,8 @@ namespace EPlastBoard.DAL
 
             Card[] cards = new Card[]
             {
-              new Card { Title = "Card example title index 1", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id, Index = 1 },
-              new Card { Title = "Card example title index 0", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id, Index = 0 },
-              new Card { Title = "Card example title index 2", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id, Index = 2 },
-              new Card { Title = "Card example title index 3", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id, Index = 3 },
-              new Card { Title = "Card example title index 4", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id, Index = 4 },
-              new Card { Title = "Card example title index 0 col 1", Description = "Need to do something", ColumnId = context.Columns.FirstOrDefault().Id+1, Index = 0 },
-
-        };
+              new Card { Title = "Card example", Description = "Card discription", ColumnId = context.Columns.FirstOrDefault().Id, Index = 0 },
+            };
             foreach (Card card in cards)
                 context.Cards.Add(card);
             context.SaveChanges();
