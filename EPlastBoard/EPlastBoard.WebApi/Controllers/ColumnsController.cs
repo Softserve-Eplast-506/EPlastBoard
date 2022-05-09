@@ -89,7 +89,8 @@ namespace EPlastBoard.WebApi.Controllers
         [HttpDelete("DeleteColumn/{id}")]
         public async Task<IActionResult> DeleteColumnById(int id)
         {
-            return Ok(await _columnService.DeleteColumnAsync(id));
+            await _columnService.DeleteColumnAsync(id);
+            return Ok();
         }
     }
 }
